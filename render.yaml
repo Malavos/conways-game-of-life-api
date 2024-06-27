@@ -1,0 +1,7 @@
+services:
+  - name: conways-game-of-life-api
+    env:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production 
+    buildCommand: dotnet publish -c Release -o out 
+    startCommand: dotnet conways-game-of-life-api.dll
