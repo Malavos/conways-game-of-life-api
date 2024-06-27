@@ -39,8 +39,8 @@ jobs:
 
     - name: Update database
       run: |
-        cd conways-game-of-life-api
-        dotnet ef database update --context AppDbContext
+        ls
+        dotnet ef database update
       working-directory: ./conways-game-of-life-api
 
     - name: Publish to Render
