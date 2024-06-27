@@ -25,10 +25,11 @@ jobs:
     - name: Test
       run: dotnet test --verbosity normal
 
-    - name: Log current directory
-      run: |
-        echo "Current directory: $PWD"
-        ls  # Lists files and directories in the current directory
+    # uncoment this out when you need to debug the action.
+    #- name: Log current directory
+    #  run: |
+    #    echo "Current directory: $PWD"
+    #    ls  # Lists files and directories in the current directory
         
     - name: Remove database file if exists
       run: |
@@ -37,9 +38,11 @@ jobs:
           Remove-Item $dbPath -Force
         }
 
+    - name: Install EF Core tools
+      run: dotnet tool install --global dotnet-ef
+
     - name: Update database
       run: |
-        ls
         dotnet-ef database update --project conways-game-of-life-api.csproj --context AppDbContext
       working-directory: ./conways-game-of-life-api
 
