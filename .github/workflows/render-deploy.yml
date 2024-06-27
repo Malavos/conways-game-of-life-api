@@ -3,14 +3,14 @@ name: Render Deploy
 on:
   push:
     branches:
-      - main  # Adjust branch name as needed
+      - master
   pull_request:
     branches:
-      - main  # Adjust branch name as needed
+      - master
 
 jobs:
   build-and-deploy:
-    runs-on: self-hosted  # Use your configured self-hosted runner
+    runs-on: self-hosted 
 
     steps:
     - name: Checkout code
@@ -19,7 +19,7 @@ jobs:
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '6.x'  # Adjust to match your .NET version
+        dotnet-version: '7.x'
 
     - name: Restore dependencies
       run: dotnet restore
@@ -32,8 +32,8 @@ jobs:
 
     - name: Recreate SQLite database
       run: |
-        rm -rf conways-game-of-life-api/Data/AppDbContext.db  # Remove SQLite database file if exists
-        dotnet ef database update --project conways-game-of-life-api --context AppDbContext  # Recreate database
+        rm -rf conways-game-of-life-api/Data/AppDbContext.db 
+        dotnet ef database update --project conways-game-of-life-api --context AppDbContext
 
     - name: Publish to Render
       env:
