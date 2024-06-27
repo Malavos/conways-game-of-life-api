@@ -25,9 +25,15 @@ jobs:
     - name: Test
       run: dotnet test --verbosity normal
 
+    - name: Remove database file if exists
+      run: |
+        $dbPath = "conways-game-of-life-api\Data\AppDbContext.db"
+        if (Test-Path $dbPath) {
+          Remove-Item $dbPath -Force
+        }
+
     - name: Recreate SQLite database
       run: |
-        rm -rf conways-game-of-life-api/Data/AppDbContext.db 
         dotnet ef database update --project conways-game-of-life-api --context AppDbContext
 
     - name: Publish to Render
