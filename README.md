@@ -1,3 +1,5 @@
+[![Render Deploy](https://github.com/Malavos/conways-game-of-life-api/actions/workflows/render-deploy.yml/badge.svg?branch=master&event=check_run)](https://github.com/Malavos/conways-game-of-life-api/actions/workflows/render-deploy.yml)
+
 # Conway's Game of Life API
 
 This API provides endpoints to simulate Conway's Game of Life, implemented using ASP.NET Core and Entity Framework Core.
