@@ -25,6 +25,11 @@ jobs:
     - name: Test
       run: dotnet test --verbosity normal
 
+    - name: Log current directory
+      run: |
+        echo "Current directory: $PWD"
+        ls  # Lists files and directories in the current directory
+        
     - name: Remove database file if exists
       run: |
         $dbPath = "conways-game-of-life-api\Data\AppDbContext.db"
@@ -32,14 +37,10 @@ jobs:
           Remove-Item $dbPath -Force
         }
 
-    - name: Log current directory
+    - name: Update database
       run: |
-        echo "Current directory: $PWD"
-        ls  # Lists files and directories in the current directory
-
-    - name: Recreate SQLite database
-      run: |
-        dotnet ef database update --project conways-game-of-life-api --context AppDbContext
+        dotnet ef database update --context AppDbContext
+      working-directory: ./conways-game-of-life-api
 
     - name: Publish to Render
       env:
