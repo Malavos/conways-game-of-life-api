@@ -1,12 +1,7 @@
-﻿using conways_game_of_life_api.Data;
-using conways_game_of_life_api.Models;
+﻿using conways_game_of_life_api.Models;
 using conways_game_of_life_api.Repositories;
 using conways_game_of_life_api.Services;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace conways_game_of_life_tests.Services
 {

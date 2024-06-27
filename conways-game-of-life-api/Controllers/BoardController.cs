@@ -1,5 +1,6 @@
 ﻿using conways_game_of_life_api.Models;
 using conways_game_of_life_api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace conways_game_of_life_api.Controllers
@@ -24,6 +25,7 @@ namespace conways_game_of_life_api.Controllers
         /// <param name="board">The board state to upload.</param>
         /// <returns>The created board state.</returns>
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> UploadBoard([FromBody] Board board)
         {
             var id = await _gameOfLifeService.UploadBoardStateAsync(board);
@@ -35,6 +37,7 @@ namespace conways_game_of_life_api.Controllers
         /// </summary>
         /// <param name="id">The ID of the board.</param>
         /// <returns>The current state of the board.</returns>
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBoard(Guid id)
         {
@@ -50,6 +53,7 @@ namespace conways_game_of_life_api.Controllers
         /// </summary>
         /// <param name="id">The ID of the board.</param>
         /// <returns>The next state of the board.</returns>
+        [AllowAnonymous]
         [HttpGet("{id}/next")]
         public async Task<IActionResult> GetNextState(Guid id)
         {
@@ -66,6 +70,7 @@ namespace conways_game_of_life_api.Controllers
         /// <param name="id">The ID of the board.</param>
         /// <param name="x">The number of generations.</param>
         /// <returns>The state of the board X generations away.</returns>
+        [AllowAnonymous]
         [HttpGet("{id}/next/{x}")]
         public async Task<IActionResult> GetXStatesAway(Guid id, int x)
         {
@@ -81,6 +86,7 @@ namespace conways_game_of_life_api.Controllers
         /// </summary>
         /// <param name="id">The ID of the board.</param>
         /// <returns>The final stable state of the board.</returns>
+        [AllowAnonymous]
         [HttpGet("{id}/final")]
         public async Task<IActionResult> GetFinalState(Guid id)
         {
