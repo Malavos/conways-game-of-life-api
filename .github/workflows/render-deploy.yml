@@ -32,6 +32,11 @@ jobs:
           Remove-Item $dbPath -Force
         }
 
+    - name: Log current directory
+      run: |
+        echo "Current directory: $PWD"
+        ls  # Lists files and directories in the current directory
+
     - name: Recreate SQLite database
       run: |
         dotnet ef database update --project conways-game-of-life-api --context AppDbContext
