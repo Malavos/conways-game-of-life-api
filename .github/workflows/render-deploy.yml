@@ -39,6 +39,7 @@ jobs:
 
     - name: Update database
       run: |
+        cd conways-game-of-life-api
         dotnet ef database update --context AppDbContext
       working-directory: ./conways-game-of-life-api
 
@@ -49,4 +50,4 @@ jobs:
       run: |
         dotnet publish conways-game-of-life-api -c Release -o ./publish
         cd ./publish
-        render deploy --config render.yaml --name your-app-name  # Adjust app name
+        render deploy --config render.yaml --conways-game-of-life
